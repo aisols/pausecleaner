@@ -155,7 +155,7 @@ function writeString(view, offset, val) {
 }
 function extractRegions(audioData, duration) {
     const minValue = 0.01;
-    const minSilenceDuration = 0.15;
+    const minSilenceDuration = 0.10;
     const mergeDuration = 0.2;
     const scale = duration / audioData.length;
     const silentRegions = [];
