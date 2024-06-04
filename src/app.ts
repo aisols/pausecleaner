@@ -53,7 +53,7 @@ function writeString(view: DataView, offset: number, val: string) {
 
 function extractRegions(audioData: Float32Array, duration: number): { start: number; end: number; }[] {
     const minValue = 0.01
-    const minSilenceDuration = 0.15
+    const minSilenceDuration = 0.10
     const mergeDuration = 0.2
     const scale = duration / audioData.length
     const silentRegions = []
