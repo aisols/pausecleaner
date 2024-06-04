@@ -121,16 +121,16 @@ function prepareCleanedWaveSurfer(pDecodeData: AudioBuffer, pRegions: { start: n
     if (!pDecodeData)
         return
 
-    console.log("duration " + pDecodeData.duration)
-    console.log("sampel rates " + pDecodeData.sampleRate)
-    console.log("length " + pDecodeData.length)
+    console.log('duration ' + pDecodeData.duration)
+    console.log('sampel rates ' + pDecodeData.sampleRate)
+    console.log('length ' + pDecodeData.length)
 
     const ws = WaveSurfer.create({
         container: '#cleanedform',
         normalize: false,
-        waveColor: "#ff4e00",
-        progressColor: "#dd5e98",
-        cursorColor: "#ddd5e9",
+        waveColor: '#ff4e00',
+        progressColor: '#dd5e98',
+        cursorColor: '#ddd5e9',
         cursorWidth: 2,
         minPxPerSec: 1,
         fillParent: true,
@@ -170,6 +170,12 @@ function prepareCleanedWaveSurfer(pDecodeData: AudioBuffer, pRegions: { start: n
 
     const blob = audioBufferToBlob(buffer)
 
+    const cleanedURL = URL.createObjectURL(blob);
+    const downloadLink = document.getElementById('downloadLink') as HTMLAnchorElement
+    downloadLink.hidden = false
+    downloadLink.download = 'cleaned.wav'
+    downloadLink.href = cleanedURL
+
     ws.loadBlob(blob)
 }
 
@@ -177,9 +183,9 @@ function prepareWaveSurfer(pAudioUrl: string, pBuffer: ArrayBuffer) {
     const ws = WaveSurfer.create({
         container: '#waveform',
         normalize: false,
-        waveColor: "#ff4e00",
-        progressColor: "#dd5e98",
-        cursorColor: "#ddd5e9",
+        waveColor: '#ff4e00',
+        progressColor: '#dd5e98',
+        cursorColor: '#ddd5e9',
         cursorWidth: 2,
         minPxPerSec: 1,
         fillParent: true,
@@ -212,7 +218,7 @@ function prepareWaveSurfer(pAudioUrl: string, pBuffer: ArrayBuffer) {
                 content: (index + 1).toString(),
                 drag: false,
                 resize: false,
-                color: "#ddd5e980",
+                color: '#ddd5e980',
             })
         })
 
@@ -241,11 +247,9 @@ function prepareWaveSurfer(pAudioUrl: string, pBuffer: ArrayBuffer) {
 }
 
 function domContentLoader() {
-    const audioFileInput = document.getElementById("audioFile") as HTMLInputElement
-    const cleanButton = document.getElementById("cleanButton") as HTMLButtonElement
-    const audioSource = document.getElementById("audioSource") as HTMLSourceElement
+    const audioFileInput = document.getElementById('audioFile') as HTMLInputElement
 
-    audioFileInput.addEventListener("change", async (event) => {
+    audioFileInput.addEventListener('change', async (event) => {
         const file = audioFileInput.files?.[0]
         if (!file)
             return
@@ -262,4 +266,4 @@ function domContentLoader() {
     })
 }
 
-document.addEventListener("DOMContentLoaded", domContentLoader)
+document.addEventListener('DOMContentLoaded', domContentLoader)
