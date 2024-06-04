@@ -163,7 +163,7 @@ function extractRegions(audioData, duration) {
     let start = 0;
     let end = 0;
     let isSilent = false;
-    for (let i = 0; i < audioData.length; i++) {
+    for (var i = 0; i < audioData.length; i++) {
         if (audioData[i] < minValue) {
             if (!isSilent) {
                 start = i;
@@ -180,7 +180,15 @@ function extractRegions(audioData, duration) {
                 });
             }
         }
+        if (i === audioData.length - 1 && start > end) {
+            silentRegions.push({
+                start: scale * start,
+                end: scale * i,
+            });
+        }
     }
+    console.log('data len: %d, %d', audioData.length, i);
+    console.log('-- start: %d, end: %d', start, end);
     // Merge silent regions that are close together
     const mergedRegions = [];
     let lastRegion = null;
@@ -197,6 +205,7 @@ function extractRegions(audioData, duration) {
     const regions = [];
     let lastEnd = 0;
     for (let i = 0; i < mergedRegions.length; i++) {
+        console.log('start: %d, end: %d', lastEnd, mergedRegions[i].start);
         regions.push({
             start: lastEnd,
             end: mergedRegions[i].start,
