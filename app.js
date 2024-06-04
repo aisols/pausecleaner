@@ -217,15 +217,15 @@ function extractRegions(audioData, duration) {
 function prepareCleanedWaveSurfer(pDecodeData, pRegions) {
     if (!pDecodeData)
         return;
-    console.log("duration " + pDecodeData.duration);
-    console.log("sampel rates " + pDecodeData.sampleRate);
-    console.log("length " + pDecodeData.length);
+    console.log('duration ' + pDecodeData.duration);
+    console.log('sampel rates ' + pDecodeData.sampleRate);
+    console.log('length ' + pDecodeData.length);
     const ws = wavesurfer_js__WEBPACK_IMPORTED_MODULE_0__["default"].create({
         container: '#cleanedform',
         normalize: false,
-        waveColor: "#ff4e00",
-        progressColor: "#dd5e98",
-        cursorColor: "#ddd5e9",
+        waveColor: '#ff4e00',
+        progressColor: '#dd5e98',
+        cursorColor: '#ddd5e9',
         cursorWidth: 2,
         minPxPerSec: 1,
         fillParent: true,
@@ -260,15 +260,20 @@ function prepareCleanedWaveSurfer(pDecodeData, pRegions) {
         }
     }
     const blob = audioBufferToBlob(buffer);
+    const cleanedURL = URL.createObjectURL(blob);
+    const downloadLink = document.getElementById('downloadLink');
+    downloadLink.hidden = false;
+    downloadLink.download = 'cleaned.wav';
+    downloadLink.href = cleanedURL;
     ws.loadBlob(blob);
 }
 function prepareWaveSurfer(pAudioUrl, pBuffer) {
     const ws = wavesurfer_js__WEBPACK_IMPORTED_MODULE_0__["default"].create({
         container: '#waveform',
         normalize: false,
-        waveColor: "#ff4e00",
-        progressColor: "#dd5e98",
-        cursorColor: "#ddd5e9",
+        waveColor: '#ff4e00',
+        progressColor: '#dd5e98',
+        cursorColor: '#ddd5e9',
         cursorWidth: 2,
         minPxPerSec: 1,
         fillParent: true,
@@ -298,7 +303,7 @@ function prepareWaveSurfer(pAudioUrl, pBuffer) {
                 content: (index + 1).toString(),
                 drag: false,
                 resize: false,
-                color: "#ddd5e980",
+                color: '#ddd5e980',
             });
         });
         const context = new AudioContext();
@@ -322,10 +327,8 @@ function prepareWaveSurfer(pAudioUrl, pBuffer) {
     });
 }
 function domContentLoader() {
-    const audioFileInput = document.getElementById("audioFile");
-    const cleanButton = document.getElementById("cleanButton");
-    const audioSource = document.getElementById("audioSource");
-    audioFileInput.addEventListener("change", (event) => __awaiter(this, void 0, void 0, function* () {
+    const audioFileInput = document.getElementById('audioFile');
+    audioFileInput.addEventListener('change', (event) => __awaiter(this, void 0, void 0, function* () {
         var _a;
         const file = (_a = audioFileInput.files) === null || _a === void 0 ? void 0 : _a[0];
         if (!file)
@@ -340,7 +343,7 @@ function domContentLoader() {
         reader.readAsArrayBuffer(file);
     }));
 }
-document.addEventListener("DOMContentLoaded", domContentLoader);
+document.addEventListener('DOMContentLoaded', domContentLoader);
 
 })();
 
