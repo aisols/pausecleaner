@@ -1,6 +1,54 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <script src="index.js"></script>
-  </body>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1J1JT1PDYB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-1J1JT1PDYB');
+    </script>
+
+    <title>Remove Unwanted Pauses from ElevenLabs MP3 Files</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-ios.css">
+    <link rel="icon" type="image/jpg" href="assets/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css">
+
+    <script src="https://unpkg.com/wavesurfer.js@7"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
+
+    <style>
+        body {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w3-container w3-black w3-center">
+        <h1>Remove Unwanted Pauses from ElevenLabs MP3 Files</h1>
+        <div class="w3-container w3-sand w3-center w3-black" style="width:80%;margin:auto;">
+            <input type="file" id="audioFile" accept=".mp3, .wav, .ogg" class="w3-black w3-margin w3-padding-16">
+            <br />
+            <div id="waveform" class="w3-round-large w3-margin" data-step="3"
+                data-intro="Click and drag to select section">
+            </div>
+            <br />
+            <div id="cleanedform" class="w3-round-large w3-margin" data-step="3"
+                data-intro="Click and drag to select section">
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
 </html>
