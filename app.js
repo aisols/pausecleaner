@@ -247,7 +247,7 @@ function prepareCleanedWaveSurfer(pDecodeData, pRegions) {
     const audioContext = new AudioContext();
     const buffer = audioContext.createBuffer(pDecodeData.numberOfChannels, frames, pDecodeData.sampleRate);
     const scale = pDecodeData.length / pDecodeData.duration;
-    for (let channel = 0; channel < buffer.numberOfChannels; channel++) {
+    for (let channel = 0; channel < pDecodeData.numberOfChannels; channel++) {
         const sourceBuffer = pDecodeData.getChannelData(channel);
         const nowBuffering = buffer.getChannelData(channel);
         let offset = 0;
