@@ -124,6 +124,7 @@ function prepareCleanedWaveSurfer(pDecodeData: AudioBuffer, pRegions: { start: n
     console.log('duration ' + pDecodeData.duration)
     console.log('sampel rates ' + pDecodeData.sampleRate)
     console.log('length ' + pDecodeData.length)
+    console.log('channels ' + pDecodeData.numberOfChannels)
 
     const ws = WaveSurfer.create({
         container: '#cleanedform',
@@ -149,13 +150,14 @@ function prepareCleanedWaveSurfer(pDecodeData: AudioBuffer, pRegions: { start: n
     // for (let i = 0; i < pRegions.length; ++i) {
     //     length += pRegions[i].end - pRegions[i].start
     // }
-    const frames = Math.ceil(length * pDecodeData.sampleRate)
+    const frames = Math.ceil(length * pDecodeData.sampleRate) + 1
     const audioContext = new AudioContext()
 
     const buffer = audioContext.createBuffer(pDecodeData.numberOfChannels, frames, pDecodeData.sampleRate)
     const scale = pDecodeData.length / pDecodeData.duration
 
-    for (let channel = 0; channel < buffer.numberOfChannels; channel++) {
+    for (let channel = 0; channel < pDecodeData.numberOfChannels; channel++) {
+        console.log(channel)
         const sourceBuffer = pDecodeData.getChannelData(channel)
         const nowBuffering = buffer.getChannelData(channel)
         let offset = 0
